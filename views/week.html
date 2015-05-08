@@ -1,0 +1,21 @@
+
+<form >
+	<div class="input-group opacity8">
+		<span class="input-group-addon" ng-click="addTodo()">@</span>
+		<input type="text" class="form-control input-append" placeholder="在“收件箱”中添加一个任务" ng-model-instant autofocus ng-model="formTodoText" >
+	</div>
+	<button>开发</button>{{getTotalTodos4()}}
+	<div class="form-control to-list" ng-repeat="todo in todos | filter:search">
+		<input type="checkbox" class="input-control" ng-model="todo.done">
+		<span>{{todo.text}}</span>
+		<div class="fr">
+			<span>今天</span>
+			<span class='logo' ng-controller='sliderCtrl'>{{surname.id4}}</span>	
+			<i class="fa fa-star"></i>
+			
+		</div>
+	</div>
+	
+</form>
+	
+	

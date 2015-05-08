@@ -1,0 +1,143 @@
+ <!DOCTYPE html> 
+ <html lang="en" ng-app="wlistApp">
+ <head >
+ 	<meta charset="UTF-8"> 
+ 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> 
+ 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+ 	<title >wlistApp</title>
+ 	<link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css"> 
+ 	<link rel="stylesheet" type="text/css" href="styles/font-awesome.min.css"> 
+ 	<link rel="stylesheet" type="text/css" href="styles/my-list.css"> 
+ 	<!-- <base href="/Works/w-list/"> -->
+ </head>
+ <body >
+
+ 	<!-- main start --> 
+ 	<div class="container-fluid" >
+ 		<div class="row" >
+ 			<div class="col-md-3 sliderbar" ng-controller="sliderCtrl">
+ 				<div class="navbar-fixed-top navbar-default col-md-3">
+ 					<ul class="nav navbar-nav">
+ 						<li class="active">
+ 							<a href="#" class="logo" >{{surname.id1}}</a>
+ 						</li>
+ 						<li class="dropdown">
+ 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+ 								{{username}}
+ 								<span class="caret"></span>
+ 							</a>
+ 							<ul class="dropdown-menu" role="menu" ng-if="true">
+ 								<li >
+ 									<a href="#">{{menu.id}}</a>
+ 								</li>
+ 								<li>
+ 									<a href="#">{{menu.name}}</a>
+ 								</li>
+ 								<li>
+ 									<a href="#">{{menu.func}}</a>
+ 								</li>
+ 								<li class="divider"></li>
+ 								<li>
+ 									<a href="#">Separated link</a>
+ 								</li>
+ 								<li class="divider"></li>
+ 								<li>
+ 									<a href="#">One more separated link</a>
+ 								</li>
+ 							</ul>
+ 						</li>
+ 						<li class="fr" ng-click="search()" >
+ 							<a href="#" ><i class="fa fa-search"></i></a>
+ 						</li>
+ 					</ul>
+ 					<form class="navbar-form navbar-left" role="search" ng-if="searchFunc">
+ 						<div class="form-group">
+ 							<input type="text" class="form-control" placeholder="Search" ng-model="search">
+ 						</div>
+ 						<button type="submit" class="btn btn-default" ng-click="searchClose()">×</button>
+ 					</form>
+ 				</div>
+
+ 				<ul class="list-group" >
+ 					<a ng-href="/register"><li class="list-group-item" ng-class="{active:btnState==1}" ng-click="btnState=1">
+ 						<span class="fa fa-qrcode"></span>
+ 						<span>register</span>
+ 						<span class="badge" ng-controller='RegisterCtrl'></span>
+ 					</li></a>
+ 					<a ng-href="/assigned"><li class="list-group-item" ng-class="{active:btnState==2}" ng-click="btnState=2">
+ 						<span class="fa fa-tags"></span>
+ 						<span>分配给我</span>
+ 						<span class="badge" ng-controller='AssignCtrl'>{{getTotalTodos2()}}</span>
+ 					</li></a>
+ 					<a ng-href="/today"><li class="list-group-item" ng-class="{active:btnState==3}" ng-click="btnState=3">
+ 						<span class="fa fa-book"></span>
+ 						<span>今天</span>
+ 						<span class="badge" ng-controller='TodayCtrl'>{{getTotalTodos3()}}</span>
+ 					</li></a>
+ 					<a ng-href="/week"><li class="list-group-item" ng-class="{active:btnState==4}" ng-click="btnState=4">
+ 						<span class="fa fa-qrcode"></span>
+ 						<span>本周</span>
+ 						<span class="badge" ng-controller='WeekCtrl'>{{getTotalTodos4()}}</span>
+ 					</li></a>
+ 					<a ng-href="/home"><li class="list-group-item" ng-class="{active:btnState==5}" ng-click="btnState=5">
+ 						<span class="fa fa-flag"></span>
+ 						<span>收件箱</span>
+ 						<span class="badge" ng-controller='HomeCtrl'>{{getTotalTodos()}}</span>
+ 					</li></a>
+ 					<a ng-href="/nice"><li class="list-group-item" ng-class="{active:btnState==6}" ng-click="btnState=6">
+ 						<span class="fa fa-qrcode"></span>
+ 						<span>ng-nice</span>
+ 					</li></a>
+ 					
+ 				</ul>
+ 				<div class=" navbar-fixed-bottom navbar-default col-md-3">
+ 					<span class="add">+</span>
+ 				</div>
+ 			</div>
+ 			<div class="col-md-9 right-part">
+
+ 				<div ng-view>
+ 				</div>
+ 				
+ 				<div class="share">
+ 					<ul class='share-ul'>
+ 						<li class="share-item">
+ 							<p class="fa fa-user-plus"></p>
+ 							<p>共享</p>
+ 						</li>
+ 						<li class="share-item">
+ 							<p class="fa fa-camera"></p>
+ 							<p>发布</p>
+ 						</li>
+ 						<li class="share-item">
+ 							<p class="fa fa-camera"></p>
+ 							<p>排序</p>
+ 						</li>
+ 						<li class="share-item no-margin-r">
+ 							<p class="fa">···</p>
+ 							<p>更多</p>
+ 						</li>
+ 					</ul>
+ 				</div>
+ 			</div>
+ 		</div>
+ 	</div>
+ 	<!-- main end --> 
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+ <script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
+<script src="bower_components/bootstrap/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="scripts/app.js"></script>
+<script type="text/javascript" src="scripts/controllers.js"></script>
+<!-- <script type="text/javascript" src="scripts/ng-nicecontrollers.js"></script> -->
+<script type="text/javascript" src="scripts/todo.js"></script>
+
+<!-- <script type="text/javascript" src="scripts/services.js"></script> -->
+
+ </body>
+ </html>
+
+
+ 
