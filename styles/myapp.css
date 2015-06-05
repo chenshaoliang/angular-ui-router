@@ -1,0 +1,17 @@
+
+html,body,.container-fluid,.row{height:100%;overflow:hidden;}
+body{background:url(../images/bg.jpg) no-repeat center center;-webkit-background-size:100% auto ;background-size:100% auto ;}
+.opacity81{opacity:.9;position: absolute;top:50%;left:20%;width: 60%;}
+div.navbar-fixed-bottom {background-color: rgba(0,0,0,0.6);color:#fff;padding:0 20px;}
+.navbar-default .navbar-nav>.active>a{color:#666;text-decoration:none !important;}
+.navbar-default .navbar-nav>li>a {color:#666;}
+div.navbar-fixed-bottom .navbar-right{background:none;position:absolute;right:20px;bottom: 20px;height:25px;}
+div.navbar-fixed-bottom .navbar-right li.active a,div.navbar-fixed-bottom .navbar-right li.active a:hover,div.navbar-fixed-bottom .navbar-right li a:hover{background:none;text-decoration:underline;color:#ccc;}
+.opacity81 .form-control{padding:20px 10px;}
+.fa-plus{padding-right:20px;}
+.modal-dialog{margin-top:18%;}
+table{font-size:14px;width: 100%;}
+.form-inline tr{height:40px;/*line-height:45px;*/margin-bottom:10px;}
+.form-inline tr td:nth-child(2n+2){padding:0px 15px 0px 5px ;}
+.form-inline tr td:nth-child(8n){padding-right:0;}
+span.fa{margin-right:5px;}
