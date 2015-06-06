@@ -15,7 +15,7 @@ body{background:url(../images/bg.jpg) no-repeat center center;-webkit-background
 .logo{background:#3DC596 !important; color:#fff !important;}
 .navbar-nav{width: 100%}
 .navbar-nav>li>a{padding:6px 8px;}
-.navbar-fixed-top .navbar-form{padding:0px;margin:0;position:absolute;top:8px;left:45px}
+.navbar-fixed-top .navbar-form{padding:0px;margin:0;position:absolute;top:8px;left:100px}
 .navbar-fixed-top .navbar-form input{padding:6px;}
 .add{text-align:center;width: 100%;display: inline-block;font-size:20px;cursor:pointer;}
 .list-group{padding-top:48px;}

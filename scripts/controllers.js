@@ -1,18 +1,15 @@
-angular.module('todoCtrls',[])
-.controller('sliderCtrl',['$scope',function($scope){
-	$scope.surname = {
-		id1:'csl1',
-		id2:'csl2',
-		id3:'csl3',
-		id4:'csl4',
-	}
-	$scope.username = "陈韶良",
-	$scope.menu = {
-		id:'action',
-		name:'another action',
-		func:'something else here'
-	};
-	
+angular.module('wlistApp')
+.controller('sliderCtrl',['$scope','$http','todofac',function($scope,$http,todofac){
+
+    $http.get('scripts/json/json2.json')
+        .success(function(data){
+            $scope.wlists = data.data;
+            console.log($scope.wlists)
+        })
+        .error(function(err){
+            console.log('err')
+        })
+
 	// search
 	$scope.searchFunc = false;
 	$scope.search = function(){
@@ -23,95 +20,62 @@ angular.module('todoCtrls',[])
 	}
 
 	// 导航
-	$scope.btnState=1;
+	$scope.btnState=100;
 	$scope.sliClick = function(state){
 		$scope.btnState = state
 	}
 
-	// date
-
-
-
+    $scope.totals = todofac.total;
+    console.log($scope.totals);
 
 }])
 
-.controller('HomeCtrl',['$scope',function($scope){
-	$scope.btnState=1;
-  	$scope.todos = [];
+.controller('HomeCtrl',['$scope','$http','JsonSer','task','adds','AddTask','todofac',
+    function($scope,$http,JsonSer,task,adds,AddTask,todofac){
+	
+    $scope.wlists = task.data;
+    console.log($scope.wlists);
 
-    $scope.getTotalTodos = function () {
-        return $scope.todos.length;
-    };
+    $scope.totals = todofac.total;
+    console.log($scope.totals);
 
-    $scope.clearCompleted = function () {
-        $scope.todos = $scope.todos.filter(function(todo){
-            return !todo.done;
+// adds
+    $scope.addserver = {};
+    $scope.add = {};
+    $scope.addserver['adds'] = adds;
+     // console.log($scope.addserver[])
+    $scope.addtask = function(){
+        console.log(333)
+        AddTask.create($scope.add).then(function(result){
+            $location.path();
+            console.log(222)
+        },function(err){
+            console.log(err);
         })
-    };
-
-    $scope.addTodo = function () {
-        if($scope.formTodoText.trim().length){
-            $scope.todos.push({text:$scope.formTodoText, done:false});
-            $scope.formTodoText = '';
-        }
-    };
-
-    
+    }
     
 
 }])
-.controller('AssignCtrl',['$scope',function($scope){
-	$scope.btnState=1;
+.controller('AssignCtrl',['$scope','todofac',function($scope,todofac){
+	
   	$scope.todos = [
   		{text:'Assigntest1',id:'11'},
   		{text:'Assigntest2',id:'12'}
   	];
 
-    $scope.getTotalTodos2 = function () {
-        return $scope.todos.length;
-    };
-
-    $scope.clearCompleted = function () {
-        $scope.todos = $scope.todos.filter(function(todo){
-            return !todo.done;
-        })
-    };
-
-    $scope.addTodo = function () {
-        if($scope.formTodoText.trim().length){
-            $scope.todos.push({text:$scope.formTodoText, done:false});
-            $scope.formTodoText = '';
-        }
-    };
 
 }])
 .controller('TodayCtrl',['$scope',function($scope){
-	$scope.btnState=1;
+	
   	$scope.todos = [
   		{text:'todaytest1',id:'1'},
   		{text:'todaytest2',id:'12'},
   		{text:'todaytest3',id:'123'}
   	];
 
-    $scope.getTotalTodos3 = function () {
-        return $scope.todos.length;
-    };
-
-    $scope.clearCompleted = function () {
-        $scope.todos = $scope.todos.filter(function(todo){
-            return !todo.done;
-        })
-    };
-
-    $scope.addTodo = function () {
-        if($scope.formTodoText.trim().length){
-            $scope.todos.push({text:$scope.formTodoText, done:false});
-            $scope.formTodoText = '';
-        }
-    };
 }])
 .controller('WeekCtrl',['$scope',function($scope){
-	$scope.btnState=1;
+
   	$scope.todos = [
   		{text:'weektest1',id:'11'},
   		{text:'weektest2',id:'12'},
@@ -122,22 +86,22 @@ angular.module('todoCtrls',[])
   		
   	];
 
-    $scope.getTotalTodos4 = function () {
-        return $scope.todos.length;
-    };
+    // $scope.getTotalTodos4 = function () {
+    //     return $scope.todos.length;
+    // };
 
-    $scope.clearCompleted = function () {
-        $scope.todos = $scope.todos.filter(function(todo){
-            return !todo.done;
-        })
-    };
+    // $scope.clearCompleted = function () {
+    //     $scope.todos = $scope.todos.filter(function(todo){
+    //         return !todo.done;
+    //     })
+    // };
 
-    $scope.addTodo = function () {
-        if($scope.formTodoText.trim().length){
-            $scope.todos.push({text:$scope.formTodoText, done:false});
-            $scope.formTodoText = '';
-        }
-    };
+    // $scope.addTodo = function () {
+    //     if($scope.formTodoText.trim().length){
+    //         $scope.todos.push({text:$scope.formTodoText, done:false});
+    //         $scope.formTodoText = '';
+    //     }
+    // };
 }])
 .controller('RegisterCtrl',['$scope',function($scope){
     var vm = $scope.vm = {
@@ -160,54 +124,15 @@ angular.module('todoCtrls',[])
             } else {
                 vm.show_error = true;
             }
-
+            
             // 重置表单
             vm.user = {};
             form.$setPristine();
-
         }
 
 }])
 
-.controller('NiceCtrl',['$scope',function($scope){
-// jindutiao
-  // 进度条
-  var vm = $scope.vm = {};
-      vm.value = 50;
-      vm.style = 'progress-bar-info';
-      vm.showLabel = true;
-
-// jinggao
-      //警告类型
-        vm.types = [
-          'alert-success',
-          'alert-info',
-          'alert-warning',
-          'alert-danger'
-        ];
-
-        vm.alerts = [
-          {type:'alert-success',msg:'操作成功,请继续下一步!'},
-          {type:'alert-danger',msg:'提交失败,修改内容并尝试重新提交!'},
-        ];
-        //删除单条警告
-        vm.closeAlert = function (index) {
-          vm.alerts.splice(index, 1);
-        };
-        //添加新警告
-        vm.addAlert = function (type, msg) {
-          if (type === undefined || msg === undefined) {
-            vm.alerts.push({
-              type:'alert-warning',
-              msg:'类型和内容不能为空.'
-            });
-          } else {
-            vm.alerts.push({
-              type:type,
-              msg:msg
-            });
-          } 
-        };
+.controller('shareCtrl',['$scope',function($scope){
 
 }])
 

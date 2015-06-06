@@ -1,8 +1,4 @@
-angular.module('wlistApp',['ngRoute','todoCtrls'])
-
-.config(['$locationProvider', function($locationProvider) {
-	$locationProvider.html5Mode(true);
-}])
+angular.module('wlistApp',['ngRoute', 'ngResource'])
 
 .config(['$routeProvider',function($routeProvider){
 	$routeProvider
@@ -12,9 +8,17 @@ angular.module('wlistApp',['ngRoute','todoCtrls'])
 	})
 	.when('/home',{
 		templateUrl:'views/home.html',
-		controller:'HomeCtrl'
+		controller:'HomeCtrl',
+		resolve: {
+			task: ["DownService", function(DownService) {
+				return DownService();
+			}],
+			adds:['AddId',function(AddId){
+				return AddId();
+			}]
+		}
 	})
-	.when('/assigned',{
+	.when('/assigned/',{
 		templateUrl:'views/my-list.html',
 		controller:'AssignCtrl'
 	})
@@ -26,10 +30,10 @@ angular.module('wlistApp',['ngRoute','todoCtrls'])
 		templateUrl:'views/week.html',
 		controller:'WeekCtrl'
 	})
-	.when('/nice',{
-		templateUrl:'views/ng-nice.html',
-		controller:'NiceCtrl'
-	})
+	// .when('/nice',{
+	// 	templateUrl:'views/ng-nice.html',
+	// 	controller:'NiceCtrl'
+	// })
 	.otherwise({redirectTo: '/'});
 }])
 
